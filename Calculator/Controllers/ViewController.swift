@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     var logic = LogicManager()
     var willClearDisplay = false
-    var previousIsNumber = true
+    var previousIsOperation = false
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var resetButton: UIButton!
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     
     func reset(){
         willClearDisplay = false
-        previousIsNumber = true
+        previousIsOperation = false
         logic.clear()
         label.text = "0"
         print(logic.array, "現在數字：",logic.currentNumber)
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
             return
         }
        
-        // 先按加減乘除再按數字要先清畫面
+        // 前一個按的是加減乘除，要先清畫面
         if willClearDisplay == true {
             label.text = ""
             willClearDisplay = false
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         // 顯示的數字放到currentNumber
         logic.currentNumber = Double(label.text!)!
         
-        previousIsNumber = true
+        previousIsOperation = false
         print(logic.array, "現在數字：",logic.currentNumber)
     }
     
@@ -100,14 +100,14 @@ class ViewController: UIViewController {
         
         logic.currentTag = Double(sender.tag)
         
-        if previousIsNumber == true {
+        if previousIsOperation == false {
             logic.array.append(logic.currentNumber)
             // array.count為 1 則放進 tag。例如：10 ÷
             if logic.array.count == 1 {
                 logic.array.append(Double(sender.tag))
             }
             // array.count為 3 才會回傳數字，例如：10 ÷ 2 +
-            if let result = logic.calculateArray(operation: "operator") {
+            else if let result = logic.calculateArray(operation: "operator") {
                 label.text = logic.formatToString(from: result)
             }
         } else {
@@ -118,7 +118,7 @@ class ViewController: UIViewController {
         }
         
         willClearDisplay = true
-        previousIsNumber = false
+        previousIsOperation = true
         print(logic.array, "現在數字：",logic.currentNumber)
     }
     
@@ -136,7 +136,7 @@ class ViewController: UIViewController {
             label.text = logic.formatToString(from: result)
         }
         
-        previousIsNumber = false
+        previousIsOperation = true
         print(logic.array, "現在數字：",logic.currentNumber)
     }
     
@@ -152,7 +152,7 @@ class ViewController: UIViewController {
         // 顯示字串沒有包含 . 再串上 .
         if !(label.text?.contains("."))! { label.text! += "." }
         
-        previousIsNumber = true
+        previousIsOperation = false
         print(logic.array, "現在數字：",logic.currentNumber)
     }
     
@@ -167,7 +167,7 @@ class ViewController: UIViewController {
         
         if logic.array.count == 2 {
             // 2 + 3 (+/-) 或是 2 + (+/-) 3
-            if previousIsNumber == true {
+            if previousIsOperation == false {
                 logic.currentNumber *= -1
                 label.text = logic.formatToString(from: logic.currentNumber)
             } else {
@@ -182,7 +182,7 @@ class ViewController: UIViewController {
             label.text = logic.formatToString(from: logic.currentNumber)
         }
         
-        previousIsNumber = true
+        previousIsOperation = false
         print(logic.array, "現在數字：",logic.currentNumber)
     }
     
@@ -203,7 +203,7 @@ class ViewController: UIViewController {
             label.text = String(label.text!.dropLast())
         }
        
-        previousIsNumber = true
+        previousIsOperation = false
         print(logic.array, "現在數字：",logic.currentNumber)
     }
 }
