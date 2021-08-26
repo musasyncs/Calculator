@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         previousIsNumber = true
         logic.clear()
         label.text = "0"
-//        print(logic.array, "現在數字：",logic.currentNumber)
+        print(logic.array, "現在數字：",logic.currentNumber)
     }
     
     // MARK: - 點擊重設
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
         logic.currentNumber = Double(label.text!)!
         
         previousIsNumber = true
-//        print(logic.array, "現在數字：",logic.currentNumber)
+        print(logic.array, "現在數字：",logic.currentNumber)
     }
     
     // MARK: - 點擊 + - × ÷
@@ -119,7 +119,7 @@ class ViewController: UIViewController {
         
         willClearDisplay = true
         previousIsNumber = false
-//        print(logic.array, "現在數字：",logic.currentNumber)
+        print(logic.array, "現在數字：",logic.currentNumber)
     }
     
     // MARK: - 點擊 =
@@ -137,7 +137,7 @@ class ViewController: UIViewController {
         }
         
         previousIsNumber = false
-//        print(logic.array, "現在數字：",logic.currentNumber)
+        print(logic.array, "現在數字：",logic.currentNumber)
     }
     
     // MARK: - 點擊小數點
@@ -145,7 +145,7 @@ class ViewController: UIViewController {
         if logic.array.count == 1 || label.text! == "Err" {
             reset()
             label.text! += "."
-//            print(logic.array, "現在數字：",logic.currentNumber)
+            print(logic.array, "現在數字：",logic.currentNumber)
             return
         }
         
@@ -153,7 +153,7 @@ class ViewController: UIViewController {
         if !(label.text?.contains("."))! { label.text! += "." }
         
         previousIsNumber = true
-//        print(logic.array, "現在數字：",logic.currentNumber)
+        print(logic.array, "現在數字：",logic.currentNumber)
     }
     
     // MARK: - 點擊 +/-
@@ -183,7 +183,7 @@ class ViewController: UIViewController {
         }
         
         previousIsNumber = true
-//        print(logic.array, "現在數字：",logic.currentNumber)
+        print(logic.array, "現在數字：",logic.currentNumber)
     }
     
     // MARK: - 點擊 delete
@@ -204,6 +204,6 @@ class ViewController: UIViewController {
         }
        
         previousIsNumber = true
-//        print(logic.array, "現在數字：",logic.currentNumber)
+        print(logic.array, "現在數字：",logic.currentNumber)
     }
 }

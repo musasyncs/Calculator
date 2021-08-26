@@ -28,17 +28,21 @@ class LogicManager {
         if String(num) == "inf" || String(num) == "nan" {
             return "Err"
         }
-        if (num * 1).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.0f", num) }
-        else if (num * 10).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.1f", num) }
-        else if (num * 100).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.2f", num) }
-        else if (num * 1000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.3f", num) }
-        else if (num * 10000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.4f", num) }
-        else if (num * 100000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.5f", num) }
-        else if (num * 1000000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.6f", num) }
-        else if (num * 10000000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.7f", num) }
-        else if (num * 100000000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.8f", num) }
-        else {
-            formatString = String(format: "%.9f", num) // 最多只顯示9位小數
+        if num != 0 {
+            if (num * 1).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.0f", num) }
+            else if (num * 10).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.1f", num) }
+            else if (num * 100).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.2f", num) }
+            else if (num * 1000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.3f", num) }
+            else if (num * 10000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.4f", num) }
+            else if (num * 100000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.5f", num) }
+            else if (num * 1000000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.6f", num) }
+            else if (num * 10000000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.7f", num) }
+            else if (num * 100000000).truncatingRemainder(dividingBy: 1.0) == 0.0 { formatString =  String(format: "%.8f", num) }
+            else {
+                formatString = String(format: "%.9f", num) // 最多只顯示9位小數
+            }
+        } else {
+            formatString = "0"
         }
         return formatString
     }
